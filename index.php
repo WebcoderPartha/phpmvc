@@ -1,5 +1,7 @@
 <?php
+
     include "system/lib/Main.php";
+    include 'system/lib/Config.php';
     include "system/lib/MainController.php";
     include "system/lib/Database.php";
     include "system/lib/Model.php";
