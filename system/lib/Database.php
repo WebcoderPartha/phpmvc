@@ -46,5 +46,61 @@ class Database extends PDO {
 //
 //    }
 
+//    public function insert($table, $data){
+//        $keys = implode(',', array_keys($data));
+//        $values = ':'.implode(', :', array_keys($data));
+//
+//        $sql = "INSERT INTO $table($keys) VALUES($values)";
+//        $query = $this->prepare($sql);
+//        foreach ($data as $key => $value) {
+//            $query->bindValue(':'.$key, $value);
+//        }
+//        $query->execute();
+//    }
+
+    public function storeData($table, $data){
+
+        $keys = implode(',', array_keys($data));
+        $values = ":".implode(', :', array_keys($data));
+        $sql = "INSERT INTO $table($keys) VALUES($values)";
+        $query = $this->prepare($sql);
+
+        foreach ($data as $key => $value) {
+            $query->bindValue(":".$key, $value);
+        }
+
+        $query->execute();
+
+    }
+
+    public function update($table, $data, $id){
+        $updateKey = NULL;
+        foreach ($data as $key => $val) {
+            $updateKey .= "$key = :$key,";
+      }
+        $updateKey = rtrim($updateKey, ',');
+
+        $sql = "UPDATE $table SET $updateKey WHERE id = $id";
+        $query = $this->prepare($sql);
+        foreach ($data as $key => $value){
+            $query->bindValue(":$key", $value);
+        }
+
+        return $query->execute();
+
+    }
+
+    public function delete($table, $id){
+
+        $sql = "DELETE FROM $table WHERE id = :id";
+//        return $this->exec($sql);
+        $query = $this->prepare($sql);
+        $query->bindValue(':id', $id);
+        return $query->execute();
+
+
+
+    }
+
 
 }

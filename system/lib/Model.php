@@ -1,5 +1,5 @@
 <?php
-//    include 'system/lib/Config.php';
+//    include 'app/config/Config.php';
 class Model
 {
     protected $db = [];

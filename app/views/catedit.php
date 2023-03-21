@@ -25,8 +25,8 @@
         table.tblone tr:nth-child(2n+1){background:#fff;height:30px;}
         table.tblone tr:nth-child(2n){background:#fdf0f1;height:30px;}
 
-        input[type="text"] {border:1px solid #ddd;margin-bottom:5px;padding:5px;width:228px;font-size:16px}
-        input[type="submit"]{cursor: pointer}
+        input[type="text"],input[type="email"] {border:1px solid #ddd;margin-bottom:5px;padding:5px;width:228px;font-size:16px}
+        input[type="submit"]{cursor: pointer; padding: 5px 20px; background: #177de3; border:none; color:#fff}
 
         .footeroption{height:90px;background:#177de3;overflow:hidden;padding-top:10px;}
         .footerone {background: #3aa0ff;border-radius: 5px;float: left;font-size:18px;line-height:23px;margin-left: 10px;padding:6px 10px;text-align:center;text-shadow: 1px 0 2px #fff;width:390px;overflow: hidden;}
@@ -39,33 +39,41 @@
 
 </header>
 <div class="content">
-    <table border="1" width="50%">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Address</th>
-            <th>Action</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-            foreach ($data as $value){ ?>
-        <tr>
-            <td><?php echo $value['name'] ?></td>
-            <td><?php echo $value['email'] ?></td>
-            <td><?php echo $value['phone'] ?></td>
-            <td><?php echo $value['address'] ?></td>
-            <td><a style="padding:5px 10px; border:none; background:lightgreen; color:#000" href="http://localhost/mvc/category/catedit/<?php echo $value['id']; ?>" >Edit</a></td>
-            <td><a style="padding:5px 10px; border:none; background:lightgreen; color:#000" href="http://localhost/mvc/category/catDestroy/<?php echo $value['id']; ?>" onclick="return confirm('Are you sure to delete?')">Delete</a></td>
-        </tr>
-            <?php }
-        ?>
-        </tbody>
 
-    </table>
+    <h2>Edit Category
+    <a href="http://localhost/mvc/category/catlist" style="border:none; float: right; overflow: hidden; padding:5px 10px; color:#fff;border: 1px solid #999999; text-decoration: none;background:green" >Back</a>
+        </h2>
+    <hr>
+    <?php
+    if (isset($msg)){
+        echo $msg;
+    }
+    ?>
+    <form method="POST" action="http://localhost/mvc/category/updateCat/<?php echo $data['id'];?>"">
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" name="name" value="<?php echo $data['name']; ?>" placeholder="Name"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="email" name="email" value="<?php echo $data['email']; ?>" placeholder="Email"></td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td><input type="text" name="phone" value="<?php echo $data['phone']; ?>" placeholder="Phone"></td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td><textarea name="address" cols="30" rows="10"><?php echo $data['address']; ?></textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" name="submit" value="Update"></td>
+            </tr>
+        </table>
+    </form>
+
 
 
 </div>

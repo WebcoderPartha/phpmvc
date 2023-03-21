@@ -25,12 +25,36 @@
         table.tblone tr:nth-child(2n+1){background:#fff;height:30px;}
         table.tblone tr:nth-child(2n){background:#fdf0f1;height:30px;}
 
-        input[type="text"] {border:1px solid #ddd;margin-bottom:5px;padding:5px;width:228px;font-size:16px}
+        input[type="text"], input[type="submit"], select {border:1px solid #ddd;margin-bottom:5px;padding:5px;width:228px;font-size:16px}
         input[type="submit"]{cursor: pointer}
 
         .footeroption{height:90px;background:#177de3;overflow:hidden;padding-top:10px;}
         .footerone {background: #3aa0ff;border-radius: 5px;float: left;font-size:18px;line-height:23px;margin-left: 10px;padding:6px 10px;text-align:center;text-shadow: 1px 0 2px #fff;width:390px;overflow: hidden;}
         .footerone p{margin:0;}
+        .postContent{
+            float: left;
+            width: 70%;
+            overflow: hidden;
+        }
+        .postContent .post{
+
+        }
+        .post h3{}
+        .sidebar{
+            float: right;
+            width: 30%;
+            overflow: hidden;
+        }
+        .widget ul {
+            list-style: none;
+        }
+        .widget ul li{
+            padding: 5px 10px;
+        }
+        .widget ul li a{
+            text-decoration: none;
+            color:#000
+        }
     </style>
 </head>
 <body>
@@ -39,50 +63,21 @@
 
 </header>
 <div class="content">
-    <table border="1" width="50%">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Address</th>
-            <th>Action</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-            foreach ($data as $value){ ?>
-        <tr>
-            <td><?php echo $value['name'] ?></td>
-            <td><?php echo $value['email'] ?></td>
-            <td><?php echo $value['phone'] ?></td>
-            <td><?php echo $value['address'] ?></td>
-            <td><a style="padding:5px 10px; border:none; background:lightgreen; color:#000" href="http://localhost/mvc/category/catedit/<?php echo $value['id']; ?>" >Edit</a></td>
-            <td><a style="padding:5px 10px; border:none; background:lightgreen; color:#000" href="http://localhost/mvc/category/catDestroy/<?php echo $value['id']; ?>" onclick="return confirm('Are you sure to delete?')">Delete</a></td>
-        </tr>
-            <?php }
-        ?>
-        </tbody>
+    <div class="searchBox">
+        <form action="<?php echo BASE_URL; ?>/index/search" method="POST">
+            <input type="text" placeholder="Search" name="keyword">
+            <select name="author" id="">
+                <option value="0">Select Author</option>
+                <?php
+                    if ($data){
+                        foreach ($data as $author){ ?>
+                            <option value="<?php echo $author['id']; ?>"><?php echo $author['name']; ?></option>
+                       <?php }
+                    }
+                ?>
 
-    </table>
+            </select>
+            <input type="submit" value="Search" name="search">
+        </form>
+    </div>
 
-
-</div>
-
-<footer class="footeroption">
-    <section class="footerone">
-        <p>Delowar Jahan Imran</p>
-        <p>Oracle Certified Professional,</p>
-        <p>Java SE 6 Programmer</p>
-
-    </section>
-    <section class="footerone">
-        <p>Like us: facebook.com/ProDelowar</p>
-        <p>Join us: facebook.com/groups/PBPTBD</p>
-        <p>Web: www.trainingWithLiveProject.com</p>
-    </section>
-</footer>
-
-</body>
-</html>

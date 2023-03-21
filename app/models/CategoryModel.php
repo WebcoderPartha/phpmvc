@@ -1,6 +1,6 @@
 <?php
 
-class Category extends Model
+class CategoryModel extends Model
 {
 
     public function category_list($tableName, $orderBy = 'DESC'){
@@ -21,7 +21,28 @@ class Category extends Model
         $data = array(":id" => $id);
         return $this->db->select($sql, $data);
 
+    }
+
+    public function insertCat($tableName, $data){
+        return $this->db->insert($tableName, $data);
+    }
+
+    public function storeData($tableName, $data){
+        return $this->db->storeData($tableName, $data);
+    }
+
+    public function updateCat($tableName, $data, $id){
+
+        return $this->db->update($tableName, $data, $id);
 
     }
+
+    public function deleteCat($table, $id){
+
+        return $this->db->delete($table, $id);
+
+    }
+
+
 
 }
