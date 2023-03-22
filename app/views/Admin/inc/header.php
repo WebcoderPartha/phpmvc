@@ -12,9 +12,9 @@
 
         .subject {border-bottom: 1px solid #3399ff;font-size: 20px;margin-bottom: 10px;padding-bottom: 10px;}
         .subject p{margin:0;}
-        .loginform {
+        .changePasswordForm {
             margin: 50px auto;
-            width: 350px;
+            width: 50%;
             box-shadow: 5px 5px 5px #999;
             padding: 10px;
             border-radius: 5px;
@@ -38,7 +38,30 @@
         .footeroption{height:90px;background:#177de3;overflow:hidden;padding-top:10px;}
         .footerone {background: #3aa0ff;border-radius: 5px;float: left;font-size:18px;line-height:23px;margin-left: 10px;padding:6px 10px;text-align:center;text-shadow: 1px 0 2px #fff;width:390px;overflow: hidden;}
         .footerone p{margin:0;}
+        .menu ul {
+            padding: 0;
+            margin: 0;
+        }
+        .menu ul li{
+            padding: 5px 10px;
+            display: inline-block;
+            background: #3399ff;
+        }
+        .menu ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
+        .box {
+            width: 29%;
+            float: left;
+            background: lightgreen;
+            margin: 5px;
+            box-shadow: 5px 5px 5px #999;
+            color: #000;
+            text-align: center;
+        }
     </style>
+    <?php Session::init(); ?>
 </head>
 <body>
 <header class="headeroption">
@@ -46,32 +69,14 @@
 
 </header>
 <div class="content">
-
-    <h2>Admin Panel
-    </h2>
+    <div class="menu">
+        <ul>
+            <li><a href="<?php echo BASE_URL; ?>/admin">Dashboard</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/admin/category">Category</a></li>
+            <li><a href="">Post</a></li>
+            <li><a href="">Users</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/Admin/myProfile">My Profile</a></li>
+            <li style="background:red"><a href="<?php echo BASE_URL; ?>/login/logout">Logout (<?php echo Session::get('username'); ?>)</a></li>
+        </ul>
+    </div>
     <hr>
-    <!--    --><?php
-    //    if (isset($msg)){
-    //        echo $msg;
-    //    }
-    //    ?>
-    s
-
-
-</div>
-<footer class="footeroption">
-    <section class="footerone">
-        <p>Parthadeb</p>
-        <p>Oracle Certified Professional,</p>
-        <p>Java SE 6 Programmer</p>
-
-    </section>
-    <section class="footerone">
-        <p>Like us: facebook.com/ProDelowar</p>
-        <p>Join us: facebook.com/groups/PBPTBD</p>
-        <p>Web: www.trainingWithLiveProject.com</p>
-    </section>
-</footer>
-
-</body>
-</html>
