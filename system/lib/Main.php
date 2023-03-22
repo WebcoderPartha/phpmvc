@@ -26,9 +26,6 @@
                 unset($this->url);
             }
 
-//            $this->getControllerURL = isset($this->url[0]) ? $this->url[0] : NULL;
-//            $this->getMethodURL = isset($this->url[1]) ? $this->url[1] : NULL;
-//            $this->getParamURL = isset($this->url[2]) ? $this->url[2] : NULL;
 
         }
 
@@ -57,7 +54,6 @@
         }
 
         public function callMethod(){
-
 
             if (isset($this->url[2])){
                 $this->methodName = $this->url[1];

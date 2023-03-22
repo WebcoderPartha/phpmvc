@@ -99,6 +99,21 @@ class Database extends PDO {
         return $query->execute();
 
 
+    }
+
+    public function affectedRows($sql, $username, $password){
+
+        $statement = $this->prepare($sql);
+        $statement->execute(array($username, $password));
+        return $statement->rowCount();
+
+    }
+
+    public function selectAuthUser($sql, $username, $password){
+
+        $statement = $this->prepare($sql);
+        $statement->execute(array($username,$password));
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
