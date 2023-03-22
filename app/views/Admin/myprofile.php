@@ -1,5 +1,13 @@
 <div class="changePasswordForm">
     <h2 style="text-align:center;padding:5px 0;margin: 0"><?php echo $data['username']; ?></h2>
+    <?php
+        if (!empty($_GET['msg'])){
+            $msg = unserialize(urldecode($_GET['msg']));
+            foreach ($msg as $value){
+                echo "<b style='color:#ff0000'>$value</b>";
+            }
+        }
+    ?>
     <hr>
     <form method="POST" action="<?php echo BASE_URL ?>/admin/updatePassword">
         <table>

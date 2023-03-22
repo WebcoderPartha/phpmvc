@@ -89,6 +89,8 @@ class Admin extends MainController
         $userModel = $this->load->model('AuthModel');
         $userData = $userModel->getUserByID($table, $userID);
         $checkOldPassword = $userData['password'];
+        $message = [];
+
 
         if ($checkOldPassword == $oldPassword){
             if ($newPassword == $confirmPassword){
@@ -106,13 +108,19 @@ class Admin extends MainController
                         header('Location:'. BASE_URL.'/login');
                     }
                 }else{
-                    echo 'Sad! old and new same not allowed';
+                    $message['msg'] = "Old password & new password must not be same!";
+                    $url = BASE_URL.'/admin/myProfile/?msg='.urlencode(serialize($message));
+                    header("Location: $url");
                 }
             }else{
-                echo 'new and confirm not match';
+                $message['msg'] = "Confirm password did not match!";
+                $url = BASE_URL.'/admin/myProfile/?msg='.urlencode(serialize($message));
+                header("Location: $url");
             }
-        }else{
-            echo 'oldPassword not match';
+        }else {
+            $message['msg'] = "Invalid old password!";
+            $url = BASE_URL.'/admin/myProfile/?msg='.urlencode(serialize($message));
+            header("Location: $url");
         }
 
 
