@@ -1,10 +1,10 @@
-<?php Session::init();
-//    $msg = Session::get('msg');
-//    if (isset($msg)){
-//        echo $msg;
-//    }else{
-//        Session::destroy();
-//    }
+<?php
+    if (!empty($_GET['msg'])){
+        $msg = unserialize(urldecode($_GET['msg']));
+        foreach ($msg as $value){
+            echo "<b style='color: #06960E'>$value</b>";
+        }
+    }
 ?>
 <table border="1" width="80%">
     <thead>

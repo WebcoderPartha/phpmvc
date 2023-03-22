@@ -3,10 +3,13 @@
 </h2>
 <hr>
 <?php
-//if (isset($msg)){
-//    echo $msg;
-//}
-//?>
+if (!empty($_GET['msg'])){
+    $msg = unserialize(urldecode($_GET['msg']));
+    foreach ($msg as $value){
+        echo "<b style='color:#ff0000'>$value</b>";
+    }
+}
+?>
 <?php
 if ($data){
     foreach ($data as $value){ ?>
@@ -27,7 +30,7 @@ if ($data){
         <td><input type="text" name="phone" value="<?php echo $value['phone']; ?>" placeholder="Phone"></td>
     </tr>
     <tr>
-        <td>Phone:</td>
+        <td>Address:</td>
         <td><textarea name="address" cols="30" rows="10"><?php echo $value['address']; ?></textarea></td>
     </tr>
     <tr>

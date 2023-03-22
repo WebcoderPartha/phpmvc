@@ -35,19 +35,57 @@ class Admin extends MainController
 
     public function updateCategory($id){
         $table = 'tbl_student';
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $address = $_POST['address'];
         $data = [
             'name' => $_POST['name'],
             'email' => $_POST['email'],
-            'phone' => $_POST['address'],
+            'phone' => $_POST['phone'],
             'address' => $_POST['address']
         ];
-        $catModel = $this->load->model('CategoryModel');
-        $update = $catModel->updateCat($table, $data, $id);
-        if ($update == 1){
-            Session::init();
-            Session::set('msg', $_POST['name'].' student updated successfully.');
-            header('Location:'.BASE_URL.'/admin/category');
+
+        $message = [];
+        if ($name == ''){
+
+            $message['msg'] = 'Name must field must not be empty!';
+            $url = BASE_URL."/Admin/editCategory/".$id."?msg=".urlencode(serialize($message));
+            header('Location:'.$url);
+
+        }else if($email == ''){
+
+            $message['msg'] = 'Email must field must not be empty!';
+            $url = BASE_URL."/Admin/editCategory/".$id."?msg=".urlencode(serialize($message));
+            header('Location:'.$url);
+
+        }else if ($phone == ''){
+
+            $message['msg'] = 'Phone must field must not be empty!';
+            $url = BASE_URL."/Admin/editCategory/".$id."?msg=".urlencode(serialize($message));
+            header('Location:'.$url);
+
+        }elseif($address == ''){
+
+            $message['msg'] = 'Address must field must not be empty!';
+            $url = BASE_URL."/Admin/editCategory/".$id."?msg=".urlencode(serialize($message));
+            header('Location:'.$url);
+
+        }else{
+
+            $catModel = $this->load->model('CategoryModel');
+            $update = $catModel->updateCat($table, $data, $id);
+
+            if ($update == 1){
+                $message['msg'] = 'Updated successfully!';
+                $url = BASE_URL."/admin/category?msg=".urlencode(serialize($message));
+                header('Location:'.$url);
+            }
         }
+
+
+
+
 
     }
 

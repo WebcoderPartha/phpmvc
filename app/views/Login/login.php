@@ -50,12 +50,17 @@
     <h2>Login
     </h2>
     <hr>
-<!--    --><?php
-//    if (isset($msg)){
-//        echo $msg;
-//    }
-//    ?>
-    <div class="loginform">
+
+    <div class="loginform"><?php
+        if (isset($_GET['msg'])){
+            $msg = unserialize(urldecode($_GET['msg']));
+            echo "<b style='color: #06960E'>$msg</b>";
+        }elseif(isset($_GET['errmsg'])){
+            $msg = unserialize(urldecode($_GET['errmsg']));
+            echo "<b style='color: #ff0000'>$msg</b>";
+        }
+        ?>
+
         <form method="POST" action="<?php echo BASE_URL ?>/login/loginauth">
         <table>
             <tr>

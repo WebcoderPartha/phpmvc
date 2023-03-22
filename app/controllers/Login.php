@@ -19,13 +19,13 @@ class Login extends MainController
     }
 
     public function loginAuth(){
-        $table = 'tbl_user';
+        $table      = 'tbl_user';
 
-        $username = $_POST['username'];
-        $password = md5($_POST['password']);
+        $username   = $_POST['username'];
+        $password   = md5($_POST['password']);
         $loginModel = $this->load->model('LoginModel');
-        $count = $loginModel->userControl($table, $username, $password);
-
+        $count      = $loginModel->userControl($table, $username, $password);
+        $message    = [];
         if ($count > 0){
             $getUserData = $loginModel->getAuthUserData($table, $username, $password);
             $username = $getUserData[0]['username'];
@@ -36,19 +36,27 @@ class Login extends MainController
             Session::set('username', $username);
             Session::set('level', $level);
             Session::set('userid', $userid);
-            header('Location:'.BASE_URL.'/Admin');
+
+            $message['msg'] = 'Hurray! Logged in successful!';
+            $url = BASE_URL.'/admin?msg='.urlencode(serialize($message));
+            header('Location:'.$url);
         }else{
-            header('Location:'.BASE_URL.'/login');
+            $msg = "Invalid username or password!";
+            $url = BASE_URL.'/login?errmsg='.urlencode(serialize($msg));
+            header('Location:'.$url);
         }
 
     }
 
     public function Logout(){
+        $msg = "Logged out successful!";
+        $url = BASE_URL.'/login?msg='.urlencode(serialize($msg));
         Session::init();
         if (Session::get('login') == true){
             Session::destroy();
-            header('Location: '.BASE_URL.'/login');
+            header('Location: '.$url);
         }
+
     }
 
 }
