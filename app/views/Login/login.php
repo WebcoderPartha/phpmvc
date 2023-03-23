@@ -54,7 +54,9 @@
     <div class="loginform"><?php
         if (isset($_GET['msg'])){
             $msg = unserialize(urldecode($_GET['msg']));
-            echo "<b style='color: #06960E'>$msg</b>";
+            foreach ($msg as $value){
+                echo "<b style='color: #06960E'>$value</b>";
+            }
         }elseif(isset($_GET['errmsg'])){
             $msg = unserialize(urldecode($_GET['errmsg']));
             echo "<b style='color: #ff0000'>$msg</b>";

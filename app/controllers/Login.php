@@ -49,8 +49,9 @@ class Login extends MainController
     }
 
     public function Logout(){
-        $msg = "Logged out successful!";
-        $url = BASE_URL.'/login?msg='.urlencode(serialize($msg));
+        $message = [];
+        $message['msg'] = "Logged out successful!";
+        $url = BASE_URL.'/login?msg='.urlencode(serialize($message));
         Session::init();
         if (Session::get('login') == true){
             Session::destroy();

@@ -19,6 +19,12 @@ class Load
         return new $modelName();
     }
 
+    public function validation($fileName){
+        include "app/validation/".$fileName.'.php';
+        return new $fileName();
+
+    }
+
 
 
 }
